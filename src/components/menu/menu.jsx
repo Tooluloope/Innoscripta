@@ -38,7 +38,7 @@ const Menu = () => {
     }, [])
 
     const [searchParam, setSearchParam] = useState('')
-    const filtered  = data > 0 && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
+    const filtered  = data.length > 0 && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
 
     return(
         <div className='menu'>

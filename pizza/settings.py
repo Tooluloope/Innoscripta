@@ -140,9 +140,10 @@ USE_TZ = True
 django_heroku.settings(locals())
 
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:5000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:5000', 'http://localhost:8000', 'http://127.0.0.1:8000']
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
 ]
