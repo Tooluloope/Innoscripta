@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from django.conf.urls import include, url
 from pizzapi.views import UserAPIView, RegisterAPIView, LoginAPIView, PizzaViewSet, OrderViewSet
 from knox.views import LogoutView
+from django.views.generic import TemplateView
+
 
 
 urlpatterns = [
@@ -28,4 +30,6 @@ urlpatterns = [
     path('auth/login', LoginAPIView.as_view()),
     path('auth/logout', LogoutView.as_view(), name='knox_logout'),
     path('', include('pizzapi.urls')),
+    re_path('.*', TemplateView.as_view(template_name='index.html'))
+
 ]

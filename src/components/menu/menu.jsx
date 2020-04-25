@@ -24,7 +24,7 @@ const Menu = () => {
 
     const fetchData = async  () => {
 
-        const response =  axios.get('http://localhost:8000/pizzas/').then(res => {
+        const response =  axios.get('https://mypizzapps.herokuapp.com/pizzas/').then(res => {
             const result = res.data
             setData(result)
             console.log(result)

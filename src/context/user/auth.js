@@ -32,7 +32,7 @@ export const login = async(dispatch,{ username, password }) => {
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post('http://localhost:8000/auth/login', body, config);
+    const res = await axios.post('https://mypizzapps.herokuapp.com/auth/login', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -60,7 +60,7 @@ export const register = async(dispatch,{ username, password, email }) => {
     const body = JSON.stringify({ username, password, email });
   
     try {
-      const res = await axios.post('http://localhost:8000/auth/register', body, config);
+      const res = await axios.post('https://mypizzapps.herokuapp.com/auth/register', body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data
