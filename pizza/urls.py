@@ -29,7 +29,7 @@ urlpatterns = [
     path('auth/register', RegisterAPIView.as_view()),
     path('auth/login', LoginAPIView.as_view()),
     path('auth/logout', LogoutView.as_view(), name='knox_logout'),
-    path('', include('pizzapi.urls')),
+    path('api', include('pizzapi.urls')),
     re_path('.*', TemplateView.as_view(template_name='index.html'))
 
 ]
