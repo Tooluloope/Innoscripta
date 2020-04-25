@@ -16,7 +16,6 @@ const Cart = () => {
         
     //     dispatch({type: 'ADD_NEW_ITEM', payload: pizza})
     // }
-    console.log(state)
     return(
         
         <div className='cart'>

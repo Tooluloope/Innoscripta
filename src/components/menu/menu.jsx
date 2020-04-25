@@ -27,7 +27,6 @@ const Menu = () => {
         const response =  axios.get('https://mypizzapps.herokuapp.com/api/pizzas/').then(res => {
             const result = res.data
             setData(result)
-            console.log(result)
         })
         return response
     }
@@ -39,7 +38,7 @@ const Menu = () => {
     }, [])
 
     const [searchParam, setSearchParam] = useState('')
-    const filtered  = data && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
+    const filtered  = data > 0 && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
 
     return(
         <div className='menu'>
