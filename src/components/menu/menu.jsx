@@ -38,7 +38,13 @@ const Menu = () => {
     }, [])
 
     const [searchParam, setSearchParam] = useState('')
-    const filtered  = data.length > 0 && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
+    const filtered  = data => {
+        if (data.length > 0){
+            return data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
+    
+            }
+        return data
+    }
 
     return(
         <div className='menu'>
@@ -48,7 +54,7 @@ const Menu = () => {
                 </h1>
                 <SearchBar searchParam = {setSearchParam} />
 
-                {filtered.length > 0 ? filtered.map( filter => <PizzaMenu key={filter.id} pizza={filter} />)
+                {filtered(data).length > 0 ? filtered(data).map( filter => <PizzaMenu key={filter.id} pizza={filter} />)
                     : <p style = {{textAlign: "center"}}>Opps... No Result Found </p>
                 }   
             </DIV>
