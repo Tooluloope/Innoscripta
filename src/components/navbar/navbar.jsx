@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from "styled-components";
 import { Login } from "../user/login";
 import { Register } from "../user/register";
+import {Link} from 'react-router-dom'
 
 import { userContext } from "../../context/user/user";
 import { Logout } from "../../context/user/auth";
@@ -16,7 +17,13 @@ const Nav = styled.nav`
     align-items: center;
 
     h3 {
-        padding-left: 30px
+        padding-left: 30px;
+    }
+    a {
+        padding-left: 15px;
+        padding-right:15px;
+        color: white;
+        text-decoration: none;
     }
 `
 const NavList = styled.ul` 
@@ -46,7 +53,12 @@ const NavBar = () => {
                 PIZZA TEST
             </h3>
             <NavList>
-                <li>Home</li>
+                { state.isAuthenticated ? <Link to=''>Home</Link> :
+                    null
+                }
+                { state.isAuthenticated ? <Link to='orders'>Orders</Link> :
+                    null
+                }
                 { state.isAuthenticated ? state.user.username :
                     <li onClick = {() => setLoginShow(!loginshow)}>Login</li> 
                 }

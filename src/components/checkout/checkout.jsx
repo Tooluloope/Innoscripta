@@ -77,7 +77,7 @@ const Checkout = ({show, setShow}) => {
                 onSubmit={ async (values, { setSubmitting }) => {
                     const ids = state.items.map(item => `https://mypizzapps.herokuapp.com/api/pizzas/${item.id}/`)
                     const order = {...values, item:ids, total:state.total}
-                    const response = await Axios.post('https://mypizzapps.herokuapp.com/api/orders/', order)
+                    await Axios.post('https://mypizzapps.herokuapp.com/api/orders/', order)
 
                     
                     setTimeout(() => {
