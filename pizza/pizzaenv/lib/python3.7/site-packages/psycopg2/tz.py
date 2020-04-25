@@ -6,8 +6,7 @@ functions or used to set the .tzinfo_factory attribute in cursors.
 """
 # psycopg/tz.py - tzinfo implementation
 #
-# Copyright (C) 2003-2019 Federico Di Gregorio  <fog@debian.org>
-# Copyright (C) 2020 The Psycopg Team
+# Copyright (C) 2003-2010 Federico Di Gregorio  <fog@debian.org>
 #
 # psycopg2 is free software: you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published
@@ -45,7 +44,7 @@ class FixedOffsetTimezone(datetime.tzinfo):
     offset and name that instance will be returned. This saves memory and
     improves comparability.
 
-    .. __: https://docs.python.org/library/datetime.html
+    .. __: http://docs.python.org/library/datetime.html#datetime-tzinfo
     """
     _name = None
     _offset = ZERO
@@ -76,7 +75,7 @@ class FixedOffsetTimezone(datetime.tzinfo):
 
     def __getinitargs__(self):
         offset_mins = self._offset.seconds // 60 + self._offset.days * 24 * 60
-        return offset_mins, self._name
+        return (offset_mins, self._name)
 
     def utcoffset(self, dt):
         return self._offset
@@ -132,7 +131,6 @@ class LocalTimezone(datetime.tzinfo):
         stamp = time.mktime(tt)
         tt = time.localtime(stamp)
         return tt.tm_isdst > 0
-
 
 LOCAL = LocalTimezone()
 

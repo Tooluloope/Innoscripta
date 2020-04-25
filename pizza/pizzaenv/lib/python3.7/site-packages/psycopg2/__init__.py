@@ -6,10 +6,10 @@ provide new-style classes for connection and cursor objects and other sweet
 candies. Like the original, psycopg 2 was written with the aim of being very
 small and fast, and stable as a rock.
 
-Homepage: https://psycopg.org/
+Homepage: http://initd.org/projects/psycopg2
 
-.. _PostgreSQL: https://www.postgresql.org/
-.. _Python: https://www.python.org/
+.. _PostgreSQL: http://www.postgresql.org/
+.. _Python: http://www.python.org/
 
 :Groups:
   * `Connections creation`: connect
@@ -18,8 +18,7 @@ Homepage: https://psycopg.org/
 """
 # psycopg/__init__.py - initialization of the psycopg module
 #
-# Copyright (C) 2003-2019 Federico Di Gregorio  <fog@debian.org>
-# Copyright (C) 2020 The Psycopg Team
+# Copyright (C) 2003-2010 Federico Di Gregorio  <fog@debian.org>
 #
 # psycopg2 is free software: you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published
@@ -44,7 +43,7 @@ Homepage: https://psycopg.org/
 
 # Note: the first internal import should be _psycopg, otherwise the real cause
 # of a failed loading of the C module may get hidden, see
-# https://archives.postgresql.org/psycopg/2011-02/msg00044.php
+# http://archives.postgresql.org/psycopg/2011-02/msg00044.php
 
 # Import the DBAPI-2.0 stuff into top-level module.
 
@@ -73,10 +72,14 @@ _ext.register_adapter(type(None), _ext.NoneAdapter)
 # Register the Decimal adapter here instead of in the C layer.
 # This way a new class is registered for each sub-interpreter.
 # See ticket #52
-from decimal import Decimal                         # noqa
-from psycopg2._psycopg import Decimal as Adapter    # noqa
-_ext.register_adapter(Decimal, Adapter)
-del Decimal, Adapter
+try:
+    from decimal import Decimal
+except ImportError:
+    pass
+else:
+    from psycopg2._psycopg import Decimal as Adapter
+    _ext.register_adapter(Decimal, Adapter)
+    del Decimal, Adapter
 
 
 def connect(dsn=None, connection_factory=None, cursor_factory=None, **kwargs):
@@ -129,3 +132,13 @@ def connect(dsn=None, connection_factory=None, cursor_factory=None, **kwargs):
         conn.cursor_factory = cursor_factory
 
     return conn
+
+
+# This is a wheel package: issue a warning on import
+from warnings import warn   # noqa
+warn("""\
+The psycopg2 wheel package will be renamed from release 2.8; in order to \
+keep installing from binary please use "pip install psycopg2-binary" instead. \
+For details see: \
+<http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.\
+""")
