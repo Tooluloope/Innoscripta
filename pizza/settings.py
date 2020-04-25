@@ -15,6 +15,8 @@ import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ALLOWED_HOSTS = ['mypizzapps.herokuapp.com', '127.0.0.1']
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -140,11 +142,12 @@ django_heroku.settings(locals())
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:5000']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'build', 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'),
+]
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = []
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
