@@ -1,0 +1,182 @@
+.shopping-cart{
+    width: 500px;
+    height: auto;
+    margin: 5em auto;
+    background: #FFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 0.5em;
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  .total {
+      padding-left: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .total p {
+    color: #86939E;
+  }
+  .total button {
+    height: 50px;
+    border: 1px solid green;
+    outline: none;
+    font-size: 20px;
+    padding: 10px;
+    background: transparent;
+    margin-right: 10px;
+    border-radius: 10px;
+   
+}
+.total button:hover {
+    color: white;
+    background: green;
+    border: 0px solid;
+}
+  
+  /* item styling */
+  .title{
+    height: 3.75em;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 1.25em 1.75em;
+    color: #5E6977;
+    font-size: 1.125em;
+    font-weight: 400;
+  }
+  .item{
+    padding: 1.25em 1.75em;
+    height: 7.5em;
+    display: flex;
+    align-items: center;
+  }
+  .item:nth-child(n) {
+    border-top: 1px solid #E1E8EE;
+    border-bottom: 1px solid #E1E8EE;
+  }
+  
+  .buttons{
+    position: relative;
+    /* padding-top: 1.75em; */
+    margin-right: 1.5em;
+  }
+  .delete-btn{
+    display: inline-block;
+    cursor: pointer;
+  }
+  .delete-btn{
+    width: 18px;
+    height: 17px;
+    background: url("https://designmodo.com/demo/shopping-cart/delete-icn.svg") no-repeat center;
+  }
+  
+  
+  .is-active{
+    animation-name: animate;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    animation-fill-mode: forwards;
+  }
+  @keyframes animate{
+    0% {background-position: left;}
+    50% {background-position: right;}
+    100% {background-position: right;}
+  }
+  
+  .image{
+    margin-right: 10px;
+
+  }
+  .image img {
+      height: 100px;
+  }
+  .description{
+    /* padding-top: 10px; */
+    margin-right: 20px;
+    
+  }
+  .description span{
+    display: block;
+    font-size: 1em;
+    color: #43484D;
+    font-weight: 400;
+  }
+  .description span:first-child{
+    margin-bottom: 5px;
+  }
+  .description span:last-child{
+    font-weight: 300;
+    /* margin-top: 8px; */
+    color: #86939E;
+  }
+  
+  .quantity{
+    /* padding-top: 20px; */
+    margin-right: 10px;
+  }
+  .quantity input{
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 1em;
+    color: #43484D;
+    font-weight: 300;
+  }
+  button[class*=btn] {
+    width: 30px;
+    height: 30px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  .minus-btn img{
+    margin-bottom: 3px;
+  }
+  .plus-btn img{
+    margin-top: 2px;
+  }
+  
+  button:focus,
+  input:focus{
+    outline: 0;
+  }
+  
+  .total-price{
+    /* padding-top: 27px; */
+    text-align: center;
+    font-size: 1em;
+    color: #43484D;
+    font-weight: 300;
+  }
+  
+  
+  /* media queries */
+  @media (max-width: 800px) {
+    .shopping-cart{
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+    .item {
+      height: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .image img{
+      width: 50%;
+    }
+    .image,
+    .quantity,
+    .description{
+      width: 100%;
+      text-align: center;
+      margin: 6px 0;
+    }
+    .buttons{
+      margin-right: 20px;
+    }
+  }
