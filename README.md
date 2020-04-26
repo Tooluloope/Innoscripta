@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory of the branch [latest-branch](https://github.com/Tooluloope/Innoscripta/tree/latest-brach), run the following script to deploy the app after you've cloned the branch:
+In the project directory of the master branch, run the following script to deploy the app after you've cloned the branch:
 
 1) ## Running it locally:
 
