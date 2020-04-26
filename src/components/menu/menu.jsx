@@ -1,45 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { PizzaMenu } from "./pizza-menu"
 import SearchBar from "../search/search"
-import axios from 'axios';
 
-
+import useFetch from "../hooks/fetch";
 
 const DIV = styled.div`
-
-   
     margin: auto;
-    
     h1 {
         text-align: center;
     }
-    
 `
 
 
 
 const Menu = () => {
-    const [data, setData] = useState([])
+    
 
-    const fetchData = async  () => {
+    // Getting Data from the API using the Custom hook
+    const {data, error, isLoading} = useFetch('https://mypizzapps.herokuapp.com/api/pizzas/')
 
-        const response =  axios.get('http://localhost:8000/pizzas/').then(res => {
-            const result = res.data
-            setData(result)
-            console.log(result)
-        })
-        return response
-    }
-
-    useEffect(() => {
-      fetchData()
-
-
-    }, [])
-
+    // Search Parameter for the filtered data
     const [searchParam, setSearchParam] = useState('')
-    const filtered  = data && data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase()))
+
+    // Return the different state of the data loading or Error
+    if(isLoading || error || !data) {
+       return( 
+            <div>
+                {isLoading ?  'Loading...' : error}
+            </div>
+       )
+    };
+
+    // Getting the filtered data using the search Parameter
+    const filteredData  = data.length >0 ? data.filter(pizza => pizza.name.toLowerCase().includes(searchParam.toLowerCase())) : []
+        
 
     return(
         <div className='menu'>
@@ -48,8 +43,7 @@ const Menu = () => {
                     The Pizza Menu
                 </h1>
                 <SearchBar searchParam = {setSearchParam} />
-
-                {filtered.length > 0 ? filtered.map( filter => <PizzaMenu key={filter.id} pizza={filter} />)
+                {filteredData.length > 0 ? filteredData.map( filter => <PizzaMenu key={filter.id} pizza={filter} />)
                     : <p style = {{textAlign: "center"}}>Opps... No Result Found </p>
                 }   
             </DIV>

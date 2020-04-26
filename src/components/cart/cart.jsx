@@ -9,25 +9,21 @@ const Cart = () => {
 
     const { state ,  } = useContext(cartContext);
     const [show, setShow] = useState(false)
-    
 
-    // const handleClick = () => {
-    //     console.log(pizza)
-        
-    //     dispatch({type: 'ADD_NEW_ITEM', payload: pizza})
-    // }
-    console.log(state)
+    const disabled = state.items < 1
     return(
         
         <div className='cart'>
             <div className="shopping-cart">
                 <div className="title">
                     Shopping Bag
+                    
                 </div>
+
                 {state ? state.items.map(item => <ShoppingCartItem key={item.id} item={item} />) : null}
-                
-                <Total setShow = {() => setShow(!show)} total = {state.total} />
-                <Checkout show = {show} setShow = {() => setShow(!show)} />
+                {/* <span style={{paddingTop: '10px', paddingLeft: '20px'}}>  Delivery Fee is $5.00</span> */}
+                <Total disabled = {disabled} setShow = {() => setShow(!show)} total = {state.total} />
+                <Checkout  show = {disabled ?  !disabled : show } setShow = {() => setShow(!show)} />
             </div>
         </div>
     )

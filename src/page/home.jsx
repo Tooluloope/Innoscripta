@@ -7,6 +7,7 @@ import { Container } from "../components/global";
 const HomePage = () => {
 
     return(
+        // Contains both the cart and menu view
         <Container>
             <Menu />
             <Cart />

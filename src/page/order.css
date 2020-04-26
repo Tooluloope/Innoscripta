@@ -1,0 +1,48 @@
+.sr-only {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%;
+  text-align: left;
+  background: #fff; 
+  overflow-x: scroll;
+}
+
+.table.table--has-expandable-rows > thead > tr,
+.table.table--has-expandable-rows > tbody > tr:nth-child(4n),
+.table.table--has-expandable-rows > tbody > tr:nth-child(3n) {
+    background: #ddd;
+}
+
+.table--sortable > thead > tr > .table__heading {
+    padding: 0;
+}
+
+.table__heading, .table__cell {
+    border: 1px solid #888;
+    padding: .625rem;
+    line-height: 1.5rem;
+    white-space: nowrap;
+}
+
+.expandable-row {
+    display: none;
+}
+
+.expandable-row[aria-hidden="false"] {
+    display: table-row;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+}

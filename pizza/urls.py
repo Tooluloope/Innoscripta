@@ -14,18 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from django.conf.urls import include, url
 from pizzapi.views import UserAPIView, RegisterAPIView, LoginAPIView, PizzaViewSet, OrderViewSet
+from rest_framework import routers
 from knox.views import LogoutView
+from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
+from .views import index
+router = routers.DefaultRouter()
+router.register(r'pizzas', PizzaViewSet)
+router.register(r'orders', OrderViewSet)
+
 
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('auth', include('knox.urls')),
     path('auth/user', UserAPIView.as_view()),
     path('auth/register', RegisterAPIView.as_view()),
     path('auth/login', LoginAPIView.as_view()),
     path('auth/logout', LogoutView.as_view(), name='knox_logout'),
-    path('', include('pizzapi.urls')),
+    path('api/', include(router.urls)),
+    path('', index, name='index'),
+
 ]

@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/pizza/__pycache
+/pizza/pizzaenv
 
 # testing
 /coverage
