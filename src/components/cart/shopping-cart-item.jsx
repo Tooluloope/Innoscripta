@@ -4,6 +4,7 @@ import { cartContext } from "../../context/cart/cart";
 
 const ShoppingCartItem = ({item}) => {
 
+    // Getting the dispatch Function
     const {dispatch} = useContext(cartContext)
 
     const handleRemove = () => {

@@ -1,49 +1,11 @@
 import React, { useContext } from 'react'
 import './checkout.css'
 import { Formik } from 'formik';
-import styled from "styled-components";
 import { cartContext } from "../../context/cart/cart";
 import Axios from "axios";
+import { Input, Button, Dismiss } from "../global";
 
-const Input = styled.input`
-    width: 300px;
-    border: 2px solid green;
-    height: 35px;
-    border-radius: 10px;
-    outline: none;
-    display: block;
-    margin: 15px auto;
-    font-size: 15px;
-    padding-left: 15px;
-`
-const Button = styled.button`
 
-    height: 50px;
-    border: 1px solid green;
-    outline: none;
-    font-size: 20px;
-    padding: 10px;
-    background: transparent;
-    margin-right: 10px;
-    border-radius: 10px;
-   
-    :hover {
-    color: white;
-    background: green;
-    border: 0px solid;
-}
-`
-const Dismiss = styled.button`
-    position: absolute;
-    font-size: 14px;
-    top: 5px;
-    left: 5px;
-    background: green;
-    color: white;
-    border-radius: 100%;
-    border: 0px solid black;
-
-`
 
 const Checkout = ({show, setShow}) => {
 
@@ -55,6 +17,8 @@ const Checkout = ({show, setShow}) => {
         <div className="wrap">
             <div className={` ${show? "is-active" : null} modal js-modal`}>
             <Formik
+
+            // Error handling 
                 initialValues={{name:'', email: '', address: '' }}
                 validate={values => {
                     const errors = {};
